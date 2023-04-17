@@ -11,6 +11,12 @@ public class LinkedList<T> {
         }
     }
 
+    private void CheckIfListIsVoid(){
+        if(size == 0){
+            throw new IndexOutOfBoundsException("LinkedList is void");
+        }
+    }
+
     private void addInHead(T value){
         Node <T> cell = new Node<>(value);
         if (size == 0) {
@@ -46,24 +52,67 @@ public class LinkedList<T> {
         CheckIndexOfRange(position);
         if(position == 0){
             addInHead(value);
-            System.out.println("Entrei no 0");
         }
         else if( position == size){
             addInTail(value);
-            System.out.println("Entrei no 1");
         }
         else{
             addInTheMiddle(value, position);
-            System.out.println("Entrei no 2");
         }
 
     }
 
-//    public void push(int position){
-//        for(T current : list){
-//            System.out.println(current);
-//        }
-//    }
+
+    private void removeInHead() {
+        if(size == 1){
+            head.setNext(null);
+            tail = head;
+            size--;
+            return;
+        }
+
+        Node<T> current = head;
+        head = current.getNext();
+        current.setNext(null);
+        size--;
+    }
+
+    private void removeInTail(){
+        Node<T> aux = head;
+
+        while(aux.getNext() != tail){
+            aux = aux.getNext();
+        }
+
+        aux.setNext(null);
+        size--;
+    }
+
+    private void removeInTheMiddle(int position){
+        Node<T> aux = head;
+        for(int i = 0; i < position - 1; i++){
+            aux = aux.getNext();
+        }
+        Node<T> aux2 = aux.getNext();
+        aux.setNext(aux2.getNext());
+        size--;
+    }
+
+    public void push(int position){
+        CheckIfListIsVoid();
+        CheckIndexOfRange(position);
+        if(position == 0){
+            removeInHead();
+        }
+        else if( position == size){
+            removeInTail();
+        }
+        else{
+            removeInTheMiddle(position);
+        }
+    }
+
+
     public Integer getSize() {
         return size;
     }

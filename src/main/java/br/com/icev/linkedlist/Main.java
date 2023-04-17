@@ -9,11 +9,8 @@ public class Main {
     public static void main(String[] args) {
         LinkedList<Integer> list = new LinkedList<>();
         list.add(1, 0);
-        list.add(4, 1);
-        list.add(7, 2);
-        list.add(11, 0);
-        list.add(65, 2);
-        System.out.println(list.getSize());
+        list.push(0);
+        list.push(0);
         System.out.println(list);
     }
 }
