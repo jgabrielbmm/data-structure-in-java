@@ -112,10 +112,37 @@ public class LinkedList<T> {
         }
     }
 
+    public Node<T> getHead() {
+        return head;
+    }
+
+    public void reverseLinkedList(){
+        Node<T> aux = head;
+        tail = aux;
+        if (aux.getNext() == null){
+            return;
+        }
+
+        Node<T> referenceNode = aux.getNext();
+
+        Node<T> auxChangeRef;
+
+        while (referenceNode.getNext() != null){
+            auxChangeRef = referenceNode;
+            referenceNode = referenceNode.getNext();
+            auxChangeRef.setNext(aux);
+            aux = auxChangeRef;
+            head = referenceNode;
+        }
+
+        head.setNext(aux);
+    }
+
 
     public Integer getSize() {
         return size;
     }
+
 
     @Override
     public String toString() {
@@ -137,4 +164,5 @@ public class LinkedList<T> {
 
         return builder.toString();
     }
+
 }
