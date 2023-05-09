@@ -6,19 +6,29 @@ import java.util.Arrays;
 public class Stack <T> {
     private T[] arr;
     private T top;
+    private int maxCapability;
+    private int size = 0;
 
-    private int size;
+    private int topIndex;
 
     public Stack(Class<T> clazz, int capacity) {
+
         arr = (T[]) Array.newInstance(clazz,capacity);
+        maxCapability = capacity;
+    }
+
+    private void maxCapabilityError(){
+        throw new StackOverflowError(String.format("Stack already reach its max capability, max capability is %s.", maxCapability));
+    }
+
+    private void stackIsVoidError(){
+        throw new ArrayIndexOutOfBoundsException("Stack is void.");
     }
 
     public void push(T element){
-        if(size == 0){
-            arr[0] = element;
-            size++;
-            top = arr[0];
-            return;
+
+        if(size == maxCapability){
+            maxCapabilityError();
         }
 
         arr[size] = element;
@@ -27,8 +37,13 @@ public class Stack <T> {
     }
 
     public T pop(){
+        if(size == 0){
+            stackIsVoidError();
+        }
+
         T removedElement = arr[size -1];
         arr[size - 1] = null;
+
         if(size == 1) {
             top = null;
         } else {
