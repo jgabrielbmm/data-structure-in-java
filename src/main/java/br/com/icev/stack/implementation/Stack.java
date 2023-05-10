@@ -1,18 +1,15 @@
 package br.com.icev.stack.implementation;
 
 import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class Stack <T> {
-    private T[] arr;
+    private final T[] arr;
     private T top;
-    private int maxCapability;
+    private final int  maxCapability;
     private int size = 0;
 
-    private int topIndex;
 
     public Stack(Class<T> clazz, int capacity) {
-
         arr = (T[]) Array.newInstance(clazz,capacity);
         maxCapability = capacity;
     }
@@ -54,7 +51,7 @@ public class Stack <T> {
     }
 
     public T top(){
-        return arr[size -1];
+        return top;
     }
 
     public int getSize() {
@@ -67,10 +64,21 @@ public class Stack <T> {
 
     @Override
     public String toString() {
-        return "Stack{" +
-                "arr=" + Arrays.toString(arr) +
-                ", top=" + top +
-                ", size=" + size +
-                '}';
+        if (size == 0){
+            return "[]";
+        }
+
+        StringBuilder builder = new StringBuilder("[");
+
+        for(int i = 0; i < size -1; i++){
+            builder.append(arr[i]);
+            builder.append(",");
+        }
+
+        builder.append(arr[size -1]);
+
+        builder.append("]");
+
+        return builder.toString();
     }
 }
