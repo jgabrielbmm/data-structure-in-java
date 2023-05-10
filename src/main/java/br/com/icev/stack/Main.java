@@ -1,42 +1,19 @@
 package br.com.icev.stack;
 
+import br.com.icev.stack.implementation.MathExpressionVerificationStack;
 import br.com.icev.stack.implementation.Stack;
 
 public class Main {
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>(Integer.class, 6);
-        stack.push(1);
-        stack.push(2);
-        stack.push(7);
-        stack.push(11);
+       /*
+        Implements in Java an algorithm that receives a mathematics expression and determines
+        if it is correct or not in terms of two mathematics expressions and its grouping symbols.
+        */
 
+        MathExpressionVerificationStack validation = new MathExpressionVerificationStack();
 
-        System.out.println(stack);
-
-        stack.pop();
-
-        System.out.println(stack);
-
-        stack.push(11);
-
-        System.out.println(stack);
-
-        System.out.println("Top is " + stack.top());
-        System.out.println("Is empty " + stack.isEmpty());
-
-        System.out.println(stack.top());
-
-
-        System.out.println(stack.pop());
-
-        System.out.println("Is empty " + stack.isEmpty());
-
-        System.out.println(stack.pop());
-
-        System.out.println(stack);
-
-        System.out.println("Stack size " + stack.getSize());
-
+        validation.expressionVerification("x+2+(y + 4)");
+        System.out.println(validation.expressionVerification("x+2+](y + 4)]"));
     }
 
 }

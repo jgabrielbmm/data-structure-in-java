@@ -3,10 +3,10 @@ package br.com.icev.stack.implementation;
 import java.lang.reflect.Array;
 
 public class Stack <T> {
-    private final T[] arr;
-    private T top;
-    private final int  maxCapability;
-    private int size = 0;
+    protected final T[] arr;
+    protected T top;
+    protected final int  maxCapability;
+    protected int size = 0;
 
 
     public Stack(Class<T> clazz, int capacity) {
