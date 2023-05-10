@@ -1,6 +1,7 @@
 package br.com.icev.stack.implementation;
 
 import java.lang.reflect.Array;
+import java.util.EmptyStackException;
 
 public class Stack <T> {
     protected final T[] arr;
@@ -18,8 +19,8 @@ public class Stack <T> {
         throw new StackOverflowError(String.format("Stack already reach its max capability, max capability is %s.", maxCapability));
     }
 
-    private void stackIsVoidError(){
-        throw new ArrayIndexOutOfBoundsException("Stack is void.");
+    private void stackIsEmptyError(){
+        throw new EmptyStackException();
     }
 
     public void push(T element){
@@ -34,8 +35,8 @@ public class Stack <T> {
     }
 
     public T pop(){
-        if(size == 0){
-            stackIsVoidError();
+        if(isEmpty()){
+            stackIsEmptyError();
         }
 
         T removedElement = arr[size -1];
@@ -50,7 +51,11 @@ public class Stack <T> {
         return removedElement;
     }
 
-    public T top(){
+    public T peek(){
+        if(isEmpty()){
+            stackIsEmptyError();
+        }
+
         return top;
     }
 

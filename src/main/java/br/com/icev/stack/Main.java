@@ -12,7 +12,6 @@ public class Main {
 
         MathExpressionVerificationStack validation = new MathExpressionVerificationStack();
 
-        validation.expressionVerification("x+2+(y + 4)");
         System.out.println(validation.expressionVerification("x+2+](y + 4)]"));
     }
 
